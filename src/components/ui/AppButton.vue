@@ -8,9 +8,11 @@
 import { computed, useCssModule } from 'vue';
 
 type ButtonSize = 'large' | 'default' | 'small';
+type ButtonType = 'default' | 'text';
 
 interface Props {
   text: string,
+  type?: ButtonType,
   size?: ButtonSize,
 }
 interface Emits {
@@ -18,6 +20,7 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+    type: 'default',
     size: 'default',
 });
 const emits = defineEmits<Emits>();
@@ -27,8 +30,9 @@ const style = useCssModule();
 const classList = computed(() => {
     return [
         style.button,
-        props.size === 'large' && style.buttonLarge,
-        props.size === 'small' && style.buttonSmall,
+        props.size === 'large' && style.buttonSizeLarge,
+        props.size === 'small' && style.buttonSizeSmall,
+        props.type ==='text' && style.buttonTypeText,
     ];
 });
 
@@ -54,12 +58,19 @@ const onClick = () => {
 .button:hover {
   opacity: 90%;
 }
-.buttonLarge {
+.buttonSizeLarge {
   padding-block: 20px;
   height: 54px;
 }
-.buttonSmall {
+.buttonSizeSmall {
   padding-block: 9px;
   height: 30px;
+}
+.buttonTypeText {
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-black);
+  height: fit-content;
+  width: fit-content;
 }
 </style>
