@@ -1,7 +1,7 @@
 <template>
-  <div>
-    trip # {{ route.params.id }}
-  </div>
+    <div>
+        trip # {{ route.params.id }}
+    </div>
 </template>
 
 <script setup lang="ts">

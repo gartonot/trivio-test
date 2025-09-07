@@ -1,5 +1,5 @@
 <template>
-  <div>
-    avia search
-  </div>
+    <div>
+        avia search
+    </div>
 </template>
