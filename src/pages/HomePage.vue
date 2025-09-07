@@ -1,20 +1,21 @@
 <template>
-    <div>
-        <div :class="$style.form">
-            <AppInputText
-                v-model:value="tripNameOrId"
-                :class="$style.inputTextSearch"
-                iconName="magnifier"
-                placeholder="Введите название поездки или её номер"
-            />
-            <AppButton
-                text="Найти"
-                size="large"
-                :class="$style.buttonSearch"
-                @click="searchTrip()"
-            />
-        </div>
+    <div :class="$style.form">
+        <AppInputText
+            v-model:value="tripNameOrId"
+            :class="$style.inputTextSearch"
+            iconName="magnifier"
+            placeholder="Введите название поездки или её номер"
+        />
+        <AppButton
+            text="Найти"
+            size="large"
+            :class="$style.buttonSearch"
+            @click="searchTrip()"
+        />
+    </div>
 
+    <div v-if="tripList.length === 0" :class="$style.tripListEmpty">
+        <div>Список поездок пуст</div>
         <AppButton
             text="Создать поездку"
             type="text"
@@ -33,6 +34,7 @@ import { ref } from 'vue';
 const drawer = useDrawerCreateTrip();
 
 const tripNameOrId = ref('');
+const tripList = ref([]);
 
 const searchTrip = () => {
     // TODO: Фильтровать список поездок по клику
@@ -57,5 +59,13 @@ const createTrip = () => {
 .buttonCreateTrip {
     color: var(--color-primary);
     border-bottom: 1px dashed var(--color-primary);
+    font-size: 16px;
+}
+.tripListEmpty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 30px;
 }
 </style>
