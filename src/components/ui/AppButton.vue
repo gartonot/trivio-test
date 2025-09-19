@@ -1,6 +1,8 @@
 <template>
     <button :class="classList" @click="onClick()">
-        {{ text }}
+        <slot>
+            {{ text }}
+        </slot>
     </button>
 </template>
 
@@ -11,7 +13,7 @@ type ButtonSize = 'large' | 'default' | 'small';
 type ButtonType = 'default' | 'text';
 
 interface Props {
-  text: string,
+  text?: string,
   type?: ButtonType,
   size?: ButtonSize,
 }
@@ -20,6 +22,7 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+    text: '',
     type: 'default',
     size: 'default',
 });

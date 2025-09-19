@@ -10,6 +10,12 @@
             </header>
             <div :class="$style.content">
                 <InputTransparent placeholder="Введите название поездки" />
+
+                <div>
+                    <PassengerCard :passenger="user1" />
+                    <PassengerCard :passenger="user1" />
+                    <PassengerCard :passenger="user1" @passengerDelete="() => { console.log('asdasd') }"/>
+                </div>
             </div>
             <footer :class="$style.footer">
                 footer
@@ -21,13 +27,20 @@
 <script setup lang="ts">
 import useDrawerCreateTrip from '@/composables/useDrawerCreateTrip.ts';
 import AppIcon from '@/components/ui/AppIcon.vue';
-import InputTransparent from '@/components/ui/InputTransparent.vue';
+import InputTransparent from '@/components/elements/InputTransparent.vue';
+import PassengerCard from '@/components/elements/PassengerCard.vue';
 
 interface Props {
   isOpen: boolean,
 }
 
 defineProps<Props>();
+
+const user1 = {
+    'first_name': 'Смирнов',
+    'second_name': 'Алексей',
+    'last_name': 'Сергеевич',
+};
 
 const drawer = useDrawerCreateTrip();
 

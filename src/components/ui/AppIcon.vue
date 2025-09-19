@@ -7,10 +7,10 @@
 </template>
 
 <script setup lang="ts">
-import { icons } from '@/assets/icons/icons.ts';
+import { type IconKeys, icons } from '@/assets/icons/icons.ts';
 
 interface Props {
-  name: keyof typeof icons,
+  name: IconKeys,
   size?: number
 }
 
